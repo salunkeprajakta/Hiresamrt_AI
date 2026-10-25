@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block title %}Post a Job | HireSmartAI{% endblock %}
+{% block content %}<div class="form-wrap wide"><div class="form-card"><p class="eyebrow">NEW OPPORTUNITY</p><h1>Post a job</h1><p class="muted">Enter clear job details and comma-separated skills.</p><form method="post">
+<label>Job title</label><input name="title" required placeholder="e.g. Python Developer Intern">
+<label>Company</label><input name="company" required placeholder="Company name">
+<label>Location</label><input name="location" required placeholder="e.g. Pune / Remote">
+<label>Description</label><textarea name="description" required rows="4" placeholder="Describe the role and responsibilities"></textarea>
+<label>Required skills (comma-separated)</label><input name="required_skills" required placeholder="Python, Flask, SQL, Git">
+<button class="btn primary full" type="submit">Publish job</button></form></div></div>{% endblock %}

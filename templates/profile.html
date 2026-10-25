@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block title %}Create / Update Profile | HireSmartAI{% endblock %}
+{% block content %}<div class="form-wrap wide"><div class="form-card"><p class="eyebrow">CANDIDATE PROFILE</p><h1>Create or update profile</h1><p class="muted">Add your education and skills so recruiters can understand your background.</p>
+<form method="post">
+<label>Full name</label><input name="name" required value="{{ user.name }}">
+<label>Email</label><input name="email" type="email" required value="{{ user.email }}">
+<label>Phone</label><input name="phone" value="{{ profile.phone or '' }}" placeholder="Phone number">
+<label>Location</label><input name="location" value="{{ profile.location or '' }}" placeholder="City, state">
+<label>Education</label><input name="education" value="{{ profile.education or '' }}" placeholder="e.g. BSc Artificial Intelligence and Machine Learning">
+<label>Skills (comma-separated)</label><input name="skills" value="{{ profile.skills or '' }}" placeholder="Python, SQL, HTML, Machine Learning">
+<label>About you / summary</label><textarea name="summary" rows="4" placeholder="Short introduction">{{ profile.summary or '' }}</textarea>
+<button class="btn primary full" type="submit">Save profile</button></form><p class="form-foot"><a href="{{ url_for('view_profile') }}">View saved profile</a></p></div></div>{% endblock %}

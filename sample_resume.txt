@@ -1,0 +1,5 @@
+Aarav Sharma
+Python and Machine Learning student
+Skills: Python, Java, SQL, HTML, CSS, JavaScript, Flask, Django, React, Pandas, NumPy, Machine Learning, Git, Communication, Problem Solving.
+Education: BSc Artificial Intelligence and Machine Learning.
+Projects: Resume analysis web application using Flask and SQLite.

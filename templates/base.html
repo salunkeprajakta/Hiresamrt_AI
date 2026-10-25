@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}HireSmartAI{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{{ url_for('index') }}">HireSmart<span>AI</span></a>
+  <nav>
+    <a href="{{ url_for('jobs') }}">Jobs</a>
+    {% if session.get('user_id') %}
+      {% if session.get('role') == 'candidate' %}
+        <a href="{{ url_for('candidate_dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('view_profile') }}">View Profile</a>
+        <a href="{{ url_for('resume') }}">Resume Analysis</a>
+        <a href="{{ url_for('interview_setup') }}">AI Interview</a>
+      {% else %}
+        <a href="{{ url_for('recruiter_dashboard') }}">Recruiter Dashboard</a>
+      {% endif %}
+      <span class="welcome">Hi, {{ session.get('name') }}</span>
+      <a class="nav-button" href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">Login</a>
+      <a class="nav-button" href="{{ url_for('register') }}">Get Started</a>
+    {% endif %}
+  </nav>
+</header>
+<main class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}{% for category, message in messages %}
+      <div class="alert {{ category }}">{{ message }}</div>
+    {% endfor %}{% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+<footer>HireSmartAI · Student project prototype</footer>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}{% block title %}HireSmartAI | Smart Recruitment{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">SMARTER RECRUITMENT, SIMPLIFIED</div>
+    <h1>Find the right role.<br><span>Show your potential.</span></h1>
+    <p>Upload your resume, discover your skills, and explore jobs matched to your profile. Recruiters can post openings and review applications.</p>
+    <div class="actions"><a class="btn primary" href="{{ url_for('register') }}">Create free account</a><a class="btn secondary" href="{{ url_for('jobs') }}">Explore jobs</a></div>
+  </div>
+  <div class="hero-card"><div class="orb">✦</div><p class="muted">YOUR CAREER SNAPSHOT</p><h3>Resume → Skills → Opportunities</h3><div class="mini-row"><span>Resume analysis</span><b>01</b></div><div class="mini-row"><span>Skill matching</span><b>02</b></div><div class="mini-row"><span>Job applications</span><b>03</b></div></div>
+</section>
+<section class="section-heading"><div><p class="eyebrow">OPPORTUNITIES</p><h2>Latest jobs</h2></div><a href="{{ url_for('jobs') }}">View all jobs →</a></section>
+<div class="job-grid">
+{% for job in jobs %}
+  <article class="card"><span class="tag">{{ job.location }}</span><h3>{{ job.title }}</h3><p class="muted">{{ job.company }}</p><p>{{ job.description|truncate(120) }}</p><div class="skill-tags">{% for skill in job.required_skills.split(',')[:4] %}<span>{{ skill.strip() }}</span>{% endfor %}</div><a class="btn secondary full" href="{{ url_for('jobs') }}">View job</a></article>
+{% else %}<div class="empty">No jobs posted yet. Create a recruiter account to post the first job.</div>{% endfor %}
+</div>
+{% endblock %}

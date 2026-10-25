@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}AI Interview Setup | HireSmartAI{% endblock %}
+{% block content %}<div class="form-wrap"><div class="form-card"><p class="eyebrow">PRACTICE INTERVIEW</p><h1>Set up your interview</h1><p class="muted">Choose a role, question count and total time.</p><form method="post">
+<label>Job / role</label><select name="job_id"><option value="">General fresher interview</option>{% for job in jobs %}<option value="{{ job.id }}">{{ job.title }} — {{ job.company }}</option>{% endfor %}</select>
+<label>Number of questions</label><select name="question_count"><option value="10">10 questions</option><option value="20">20 questions</option></select>
+<label>Interview duration</label><select name="duration"><option value="10">10 minutes</option><option value="15">15 minutes</option></select>
+<button class="btn primary full" type="submit">Generate questions</button></form><p class="note">Gemini question generation works when GEMINI_API_KEY is configured. Without it, the app uses built-in sample questions.</p></div></div>{% endblock %}

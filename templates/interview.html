@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block title %}Timed Interview | HireSmartAI{% endblock %}
+{% block content %}<section class="page-head"><p class="eyebrow">TIMED PRACTICE</p><h1>Interview questions</h1><p class="muted">{{ interview.question_count }} questions · {{ interview.duration_minutes }} minutes</p></section>
+<div class="timer-card"><span>Time remaining</span><strong id="timer">{{ "%02d"|format(interview.duration_minutes) }}:00</strong><small>Submit when finished. When time runs out, the page will submit your answers automatically.</small></div>
+<form method="post" id="interview-form"><div class="question-list">{% for q in questions %}<article class="card question-card"><div class="question-number">QUESTION {{ loop.index }} / {{ questions|length }}</div><h3>{{ q }}</h3><textarea name="answer_{{ loop.index0 }}" rows="3" placeholder="Write your answer here..."></textarea></article>{% endfor %}</div><button class="btn primary" type="submit">Submit interview answers</button></form>
+<script>
+(function(){let seconds={{ interview.duration_minutes }}*60;const timer=document.getElementById('timer');const form=document.getElementById('interview-form');function tick(){const m=Math.floor(seconds/60),s=seconds%60;timer.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');if(seconds<=0){clearInterval(interval);form.submit();return;}seconds--;}tick();const interval=setInterval(tick,1000);})();
+</script>{% endblock %}
