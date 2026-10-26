@@ -9,9 +9,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 
 BASE_DIR = Path(__file__).resolve().parent
-DB_PATH = BASE_DIR / "hiresmart.db"
-UPLOAD_DIR = BASE_DIR / "uploads"
-UPLOAD_DIR.mkdir(exist_ok=True)
+
+if os.environ.get("VERCEL"):
+    DB_PATH = Path("/tmp/hiresmart.db")
+    UPLOAD_DIR = Path("/tmp/uploads")
+else:
+    DB_PATH = BASE_DIR / "hiresmart.db"
+    UPLOAD_DIR = BASE_DIR / "uploads"
+
+UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 ALLOWED_EXTENSIONS = {"pdf", "docx", "txt"}
 
 app = Flask(__name__)
