@@ -138,7 +138,7 @@ def login_required(role=None):
 def generate_interview_questions(job, skills, count, duration):
     """Uses Gemini when GEMINI_API_KEY is configured; otherwise provides reliable demo questions."""
     api_key = os.environ.get("GEMINI_API_KEY", "").strip()
-    model = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+    model = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash")
     if api_key:
         try:
             import urllib.request
@@ -467,3 +467,4 @@ with app.app_context():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
